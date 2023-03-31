@@ -1,4 +1,4 @@
-import {FC, useMemo, useState} from 'react'
+import {FC} from 'react'
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
 import CardMedia from '@mui/material/CardMedia'
@@ -14,16 +14,12 @@ import {useAppDispatch} from "../hooks";
 import {addToFavourites, deletePhotoFromList, deletePhotoFromFavourite} from "../redux/photos-slice";
 import {Basic} from "unsplash-js/dist/methods/photos/types"
 
-
 interface Props extends Basic {
     liked_by_user?: boolean
 }
 
 const MyCard: FC<{ photo: Props, showFavourite: boolean }> = ({ photo, showFavourite }) => {
-
     const dispatch = useAppDispatch()
-
-
 
     const toggleLike = () => {
         if (photo.liked_by_user) {
@@ -48,8 +44,7 @@ const MyCard: FC<{ photo: Props, showFavourite: boolean }> = ({ photo, showFavou
                 sx={{
                     display: 'flex',
                     flexDirection: 'column',
-                }}
-            >
+                }}>
                 <CardMedia
                     component="img"
                     image={photo.urls.regular as string}
@@ -57,8 +52,12 @@ const MyCard: FC<{ photo: Props, showFavourite: boolean }> = ({ photo, showFavou
                 />
                 <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                        Author<Link target="_blank" href={`https://unsplash.com/@${photo.user.username}`}>{` ${photo.user.name}`}</Link>
-
+                        Author
+                        <Link
+                            target="_blank"
+                            href={`https://unsplash.com/@${photo.user.username}`}>
+                            {` ${photo.user.name}`}
+                        </Link>
                     </Typography>
                     <Typography>
                         {photo.alt_description}

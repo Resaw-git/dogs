@@ -1,6 +1,5 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit"
-import {Basic} from "unsplash-js/dist/methods/photos/types"
-
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { Basic } from 'unsplash-js/dist/methods/photos/types'
 
 interface Photo extends Basic {
     liked_by_user?: boolean
@@ -13,11 +12,11 @@ interface PhotoList {
 
 const initialState: PhotoList = {
     list: [],
-    favourites: []
-};
+    favourites: [],
+}
 
 const photosSlice = createSlice({
-    name: "photos",
+    name: 'photos',
     initialState,
     reducers: {
         setPhotos: (state, action: PayloadAction<Photo[]>) => {
@@ -50,9 +49,14 @@ const photosSlice = createSlice({
                 }
             })
         },
-    }
+    },
 })
 
-export const {setPhotos, addToFavourites, deletePhotoFromList, deletePhotoFromFavourite} = photosSlice.actions
+export const {
+    setPhotos,
+    addToFavourites,
+    deletePhotoFromList,
+    deletePhotoFromFavourite,
+} = photosSlice.actions
 
 export default photosSlice.reducer
